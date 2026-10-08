@@ -13,6 +13,7 @@ struct IncomeEntryView: View {
     @State private var creditedDate: Date = Date()
     @State private var showingAddExtra = false
     @State private var showingAddPastSalary = false
+    @FocusState private var isInputActive: Bool
     
     // Add extra form
     @State private var newExtraAmount: String = ""
@@ -61,7 +62,6 @@ struct IncomeEntryView: View {
                 .padding()
             }
             .navigationBarHidden(true)
-            
             .onAppear {
                 let currentUserEmail = Auth.auth().currentUser?.email?.lowercased() ?? ""
                 let userSettings = settings.first(where: { $0.ownerEmail == currentUserEmail })
@@ -69,6 +69,14 @@ struct IncomeEntryView: View {
                     viewModel.expectedSalary = s.expectedMonthlySalary
                 }
                 loadCurrentMonth()
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        isInputActive = false
+                    }
+                }
             }
         }
     }
@@ -105,6 +113,7 @@ struct IncomeEntryView: View {
                     HStack {
                         TextField("Actual Salary", text: $actualSalaryText)
                             .keyboardType(.decimalPad)
+                            .focused($isInputActive)
                             .padding()
                             .background(Color.primary.opacity(0.1))
                             .cornerRadius(12)
@@ -333,6 +342,7 @@ struct IncomeEntryView: View {
                     
                     TextField("Salary Amount (₹)", text: $pastSalaryAmount)
                         .keyboardType(.decimalPad)
+                        .focused($isInputActive)
                         .padding()
                         .background(Color.primary.opacity(0.1))
                         .cornerRadius(12)
@@ -383,6 +393,7 @@ struct IncomeEntryView: View {
                 VStack(spacing: 20) {
                     TextField("Amount (₹)", text: $newExtraAmount)
                         .keyboardType(.decimalPad)
+                        .focused($isInputActive)
                         .padding()
                         .background(Color.primary.opacity(0.1))
                         .cornerRadius(12)

@@ -25,7 +25,7 @@ struct SettingsView: View {
     // Accounts
     @State private var hdfcBalance: String = ""
     @State private var iciciBalance: String = ""
-    
+    @FocusState private var isInputActive: Bool
     @State private var saved = false
     
     var body: some View {
@@ -63,7 +63,14 @@ struct SettingsView: View {
             }
             .navigationBarHidden(true)
             .onAppear(perform: loadSettings)
-            
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        isInputActive = false
+                    }
+                }
+            }
         }
     }
     
@@ -102,6 +109,7 @@ struct SettingsView: View {
                 Spacer()
                 glassTextField("₹", text: $expectedSalary)
                     .keyboardType(.numberPad)
+                    .focused($isInputActive)
                     .multilineTextAlignment(.trailing)
                     .frame(width: 120)
             }

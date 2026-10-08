@@ -9,6 +9,7 @@ struct GoalView: View {
     @State private var showingEditGoal = false
     @State private var editTargetAmount: String = ""
     @State private var editTargetDate: Date = Date()
+    @FocusState private var isInputActive: Bool
     
     @Query private var balances: [AccountBalance]
     
@@ -53,6 +54,14 @@ struct GoalView: View {
             
             .onAppear {
                 goal = viewModel.fetchOrCreateGoal()
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        isInputActive = false
+                    }
+                }
             }
         }
     }
@@ -195,6 +204,7 @@ struct GoalView: View {
                         .foregroundStyle(.primary.opacity(0.8))
                     TextField("₹", text: $editTargetAmount)
                         .keyboardType(.numberPad)
+                        .focused($isInputActive)
                         .padding()
                         .background(Color.primary.opacity(0.1))
                         .cornerRadius(12)

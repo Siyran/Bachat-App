@@ -13,6 +13,7 @@ struct BudgetView: View {
     @State private var selectedMonthKey: String = DateHelpers.monthKey()
     @State private var editingCategory: ExpenseCategory?
     @State private var shareText: String = ""
+    @FocusState private var isInputActive: Bool
     
     init(context: ModelContext) {
         _viewModel = StateObject(wrappedValue: BudgetViewModel(context: context))
@@ -256,6 +257,7 @@ struct BudgetView: View {
                         Spacer()
                         TextField("%", text: $shareText)
                             .keyboardType(.numberPad)
+                            .focused($isInputActive)
                             .multilineTextAlignment(.trailing)
                             .frame(width: 80)
                             .padding(10)
@@ -291,6 +293,12 @@ struct BudgetView: View {
                         editingCategory = nil
                     }
                     .tint(.cyan)
+                }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        isInputActive = false
+                    }
                 }
             }
         }

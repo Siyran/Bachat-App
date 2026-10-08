@@ -11,7 +11,9 @@ struct QuickExpenseView: View {
     @State private var note: String = ""
     @State private var date: Date = Date()
     @State private var isShared: Bool = false
+    @State private var paidByPartner: Bool = false
     @State private var splitRatioText: String = String(format: "%.0f", Constants.defaultSplitRatio * 100)
+    @FocusState private var isInputActive: Bool
     
     // Feedback
     @State private var showSuccess: Bool = false
@@ -56,7 +58,14 @@ struct QuickExpenseView: View {
                 .scrollIndicators(.hidden)
             }
             .navigationBarHidden(true)
-            
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") {
+                        isInputActive = false
+                    }
+                }
+            }
         }
     }
     
@@ -90,6 +99,7 @@ struct QuickExpenseView: View {
                     TextField("0.00", text: $amountText)
                         .font(.system(size: 48, weight: .bold, design: .rounded))
                         .keyboardType(.decimalPad)
+                        .focused($isInputActive)
                         .foregroundStyle(.primary)
                         .tint(.cyan)
                 }
@@ -152,12 +162,19 @@ struct QuickExpenseView: View {
                 if isShared {
                     Divider().background(Color.primary.opacity(0.1))
                     
+                    Toggle("Paid by \(partnerName)", isOn: $paidByPartner)
+                        .tint(.cyan)
+                        .foregroundStyle(.primary)
+                    
+                    Divider().background(Color.primary.opacity(0.1))
+                    
                     HStack {
                         Text("Your Share (%)")
                             .foregroundStyle(.primary)
                         Spacer()
                         TextField("%", text: $splitRatioText)
                             .keyboardType(.numberPad)
+                            .focused($isInputActive)
                             .multilineTextAlignment(.trailing)
                             .frame(width: 60)
                             .padding(8)
@@ -211,10 +228,14 @@ struct QuickExpenseView: View {
         
         let currentUserEmail = Auth.auth().currentUser?.email?.lowercased() ?? ""
         var computedRoommateEmail = ""
+        var finalPaidByEmail = currentUserEmail
         
         if isShared {
             let userSettings = settings.first(where: { $0.ownerEmail == currentUserEmail })
             computedRoommateEmail = userSettings?.partnerEmail.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+            if paidByPartner && !computedRoommateEmail.isEmpty {
+                finalPaidByEmail = computedRoommateEmail
+            }
         }
         
         viewModel.addExpense(
@@ -224,7 +245,8 @@ struct QuickExpenseView: View {
             date: date,
             isShared: isShared,
             splitRatio: ratio,
-            sharedWithEmail: computedRoommateEmail
+            sharedWithEmail: computedRoommateEmail,
+            paidByEmail: finalPaidByEmail
         )
         
         // Reset and show feedback

@@ -217,7 +217,7 @@ struct DashboardView: View {
                 roommateOwes += exp.roommateShare
                 if sharedPersonEmail.isEmpty { sharedPersonEmail = exp.sharedWithEmail }
             } else {
-                userOwes += (exp.fullAmount - exp.amount) // The creator's share is exp.amount, so I owe the remainder
+                userOwes += exp.amount // If Amir paid, I owe Amir my share (exp.amount)
                 if sharedPersonEmail.isEmpty { sharedPersonEmail = exp.paidByEmail }
             }
         }

@@ -71,9 +71,11 @@ final class ExpenseViewModel: ObservableObject {
         date: Date,
         isShared: Bool,
         splitRatio: Double,
-        sharedWithEmail: String = ""
+        sharedWithEmail: String = "",
+        paidByEmail: String = ""
     ) {
-        let paidByEmail = Auth.auth().currentUser?.email?.lowercased() ?? ""
+        let fallbackEmail = Auth.auth().currentUser?.email?.lowercased() ?? ""
+        let finalPaidByEmail = paidByEmail.isEmpty ? fallbackEmail : paidByEmail
         let expense = Expense(
             amount: amount,
             category: category,
@@ -81,7 +83,7 @@ final class ExpenseViewModel: ObservableObject {
             date: date,
             isShared: isShared,
             splitRatio: splitRatio,
-            paidByEmail: paidByEmail,
+            paidByEmail: finalPaidByEmail,
             sharedWithEmail: sharedWithEmail
         )
         Task {
