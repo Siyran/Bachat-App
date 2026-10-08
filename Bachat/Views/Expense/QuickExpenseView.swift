@@ -233,7 +233,10 @@ struct QuickExpenseView: View {
         if isShared {
             let userSettings = settings.first(where: { $0.ownerEmail == currentUserEmail })
             computedRoommateEmail = userSettings?.partnerEmail.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-            if paidByPartner && !computedRoommateEmail.isEmpty {
+            if computedRoommateEmail.isEmpty {
+                computedRoommateEmail = "roommate@local"
+            }
+            if paidByPartner {
                 finalPaidByEmail = computedRoommateEmail
             }
         }

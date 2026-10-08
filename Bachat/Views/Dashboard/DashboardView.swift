@@ -247,27 +247,25 @@ struct DashboardView: View {
                         .foregroundStyle(.cyan)
                 }
                 
-                HStack {
-                    if net > 0 {
+                VStack(spacing: 8) {
+                    HStack {
                         Text("\(partnerName) owes you")
                             .font(.subheadline)
                             .foregroundStyle(.primary.opacity(0.8))
                         Spacer()
-                        Text(CurrencyFormatter.format(net))
+                        Text(CurrencyFormatter.format(net > 0 ? net : 0))
                             .font(.title2.weight(.bold))
-                            .foregroundStyle(.green)
-                    } else if net < 0 {
+                            .foregroundStyle(net > 0 ? .green : .primary.opacity(0.5))
+                    }
+                    
+                    HStack {
                         Text("You owe \(partnerName)")
                             .font(.subheadline)
                             .foregroundStyle(.primary.opacity(0.8))
                         Spacer()
-                        Text(CurrencyFormatter.format(abs(net)))
+                        Text(CurrencyFormatter.format(net < 0 ? abs(net) : 0))
                             .font(.title2.weight(.bold))
-                            .foregroundStyle(.red)
-                    } else {
-                        Text("You are completely settled up!")
-                            .font(.subheadline)
-                            .foregroundStyle(.green)
+                            .foregroundStyle(net < 0 ? .red : .primary.opacity(0.5))
                     }
                 }
             }
