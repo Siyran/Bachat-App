@@ -15,6 +15,7 @@ struct DashboardView: View {
     @State private var goal: SavingsGoal?
     
     @State private var showMailSheet = false
+    @State private var showMailErrorAlert = false
     @State private var mailError: Error?
     @State private var settleUpEmailAddress = ""
     @State private var settleUpMessage = ""
@@ -273,9 +274,12 @@ struct DashboardView: View {
                             .font(.title2.weight(.bold))
                             .foregroundStyle(net < 0 ? .red : .primary.opacity(0.5))
                     }
-                    
-                    if net != 0 && MFMailComposeViewController.canSendMail() {
+                    if net != 0 {
                         Button(action: {
+                            if !MFMailComposeViewController.canSendMail() {
+                                showMailErrorAlert = true
+                                return
+                            }
                             let isYouOwe = net < 0
                             let amountStr = CurrencyFormatter.format(abs(net))
                             let fallbackPartnerEmail = "idaretoshare99@gmail.com"
@@ -309,6 +313,11 @@ struct DashboardView: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 20).stroke(Color.primary.opacity(0.15), lineWidth: 1)
             )
+            .alert("Mail Not Configured", isPresented: $showMailErrorAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("Please configure an email account on this device (or run on a physical device) to send emails.")
+            }
             .sheet(isPresented: $showMailSheet) {
                 MailView(isShowing: $showMailSheet,
                          resultError: $mailError,
