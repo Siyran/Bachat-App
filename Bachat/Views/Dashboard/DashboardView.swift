@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import FirebaseAuth
+import MessageUI
 
 struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
@@ -12,6 +13,11 @@ struct DashboardView: View {
     @State private var monthlyIncome: MonthlyIncome?
     @State private var accounts: [AccountBalance] = []
     @State private var goal: SavingsGoal?
+    
+    @State private var showMailSheet = false
+    @State private var mailError: Error?
+    @State private var settleUpEmailAddress = ""
+    @State private var settleUpMessage = ""
     
     private let monthKey = DateHelpers.monthKey()
     
@@ -267,6 +273,34 @@ struct DashboardView: View {
                             .font(.title2.weight(.bold))
                             .foregroundStyle(net < 0 ? .red : .primary.opacity(0.5))
                     }
+                    
+                    if net != 0 && MFMailComposeViewController.canSendMail() {
+                        Button(action: {
+                            let isYouOwe = net < 0
+                            let amountStr = CurrencyFormatter.format(abs(net))
+                            let fallbackPartnerEmail = "idaretoshare99@gmail.com"
+                            let partnerEmail = userSettings?.partnerEmail.isEmpty == false ? userSettings!.partnerEmail : fallbackPartnerEmail
+                            
+                            settleUpEmailAddress = partnerEmail
+                            
+                            if isYouOwe {
+                                settleUpMessage = "Hi \(partnerName),\n\nHere's a note regarding our shared expenses. I currently owe you \(amountStr). Let's settle up!\n\nBest,\n\(userSettings?.userName ?? "Me")"
+                            } else {
+                                settleUpMessage = "Hi \(partnerName),\n\nJust a quick reminder regarding our shared expenses. You currently owe me \(amountStr). Let's settle up soon!\n\nBest,\n\(userSettings?.userName ?? "Me")"
+                            }
+                            
+                            showMailSheet = true
+                        }) {
+                            Text(net < 0 ? "Settle Up via Email" : "Send Reminder Email")
+                                .font(.subheadline.weight(.semibold))
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 10)
+                                .background(Color.cyan.opacity(0.15))
+                                .foregroundStyle(.cyan)
+                                .cornerRadius(12)
+                        }
+                        .padding(.top, 8)
+                    }
                 }
             }
             .padding(20)
@@ -275,6 +309,13 @@ struct DashboardView: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 20).stroke(Color.primary.opacity(0.15), lineWidth: 1)
             )
+            .sheet(isPresented: $showMailSheet) {
+                MailView(isShowing: $showMailSheet,
+                         resultError: $mailError,
+                         toRecipients: [settleUpEmailAddress],
+                         subject: "Bachat Settle Up",
+                         messageBody: settleUpMessage)
+            }
         )
     }
     

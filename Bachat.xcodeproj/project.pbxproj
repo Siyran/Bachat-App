@@ -52,6 +52,7 @@
 		E3863420220E96619FA16846 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE1A0BEDEF25A86E3D0825 /* AuthManager.swift */; };
 		E4E8C28E126051065D021D54 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BAE1B660826986DED7058 /* ExpenseCategory.swift */; };
 		F728CE4B7858ACB7AF7E4B82 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C420A84B5252BCE2C4A5AA /* LoginView.swift */; };
+		FD4039E50529D70CE482E13F /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2172EB6E607D081DAF5F0BE6 /* MailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		103F00D56154E3EF01992BB1 /* IncomeEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeEngineTests.swift; sourceTree = "<group>"; };
 		19DCA0D78543BAFA428E64FC /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		1D65EE37DEB8D2F55197374B /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		2172EB6E607D081DAF5F0BE6 /* MailView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		3A5AFA9671B43AE8889A2A57 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		3B78BE86F7E987513D1F9D3D /* Bachat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bachat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BD25CCC1124F995C06E3CD9 /* BudgetEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetEngine.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				5BEE2EDF3DCDC623DE7E359C /* Constants.swift */,
 				A593E3CAE34C6379FA56C279 /* DateHelpers.swift */,
+				2172EB6E607D081DAF5F0BE6 /* MailView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				421D36B94B6D0121A056D385 /* SavingsGoal.swift in Sources */,
 				9BDE3C87D9C5296FD31C1365 /* SettingsView.swift in Sources */,
 				948B6B5DDA1899E1513071F7 /* UserSettings.swift in Sources */,
+				FD4039E50529D70CE482E13F /* MailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
