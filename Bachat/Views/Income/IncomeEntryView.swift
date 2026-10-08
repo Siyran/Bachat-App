@@ -12,6 +12,7 @@ struct IncomeEntryView: View {
     @State private var actualSalaryText: String = ""
     @State private var creditedDate: Date = Date()
     @State private var showingAddExtra = false
+    @State private var showingAddPastSalary = false
     
     // Add extra form
     @State private var newExtraAmount: String = ""
@@ -253,11 +254,19 @@ struct IncomeEntryView: View {
     
     private var historySection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Salary History")
-                .font(.title3.weight(.bold))
-                .foregroundStyle(.primary)
+            HStack {
+                Text("Salary History")
+                    .font(.title3.weight(.bold))
+                    .foregroundStyle(.primary)
+                Spacer()
+                Button(action: { showingAddPastSalary = true }) {
+                    Label("Add Past", systemImage: "plus.circle.fill")
+                        .font(.subheadline.weight(.bold))
+                        .foregroundStyle(.cyan)
+                }
+            }
             
-            let pastMonths = allMonths.filter { !$0.isProvisional && $0.monthKey != currentMonth?.monthKey }
+            let pastMonths = allMonths.filter { !$0.isProvisional }
             
             if pastMonths.isEmpty {
                 Text("No confirmed past salaries found.")
@@ -301,6 +310,69 @@ struct IncomeEntryView: View {
         .overlay(
             RoundedRectangle(cornerRadius: 20).stroke(Color.primary.opacity(0.15), lineWidth: 1)
         )
+        .sheet(isPresented: $showingAddPastSalary) {
+            addPastSalaryForm()
+                .presentationDetents([.fraction(0.5)])
+        }
+    }
+    
+    @State private var pastMonthDate = Date()
+    @State private var pastSalaryAmount = ""
+    
+    private func addPastSalaryForm() -> some View {
+        NavigationStack {
+            ZStack {
+                Color(UIColor.systemBackground).ignoresSafeArea()
+                
+                VStack(spacing: 20) {
+                    DatePicker("Salary Month", selection: $pastMonthDate, displayedComponents: [.date])
+                        .datePickerStyle(.compact)
+                        .padding()
+                        .background(Color.primary.opacity(0.1))
+                        .cornerRadius(12)
+                    
+                    TextField("Salary Amount (₹)", text: $pastSalaryAmount)
+                        .keyboardType(.decimalPad)
+                        .padding()
+                        .background(Color.primary.opacity(0.1))
+                        .cornerRadius(12)
+                    
+                    Button("Save Past Salary") {
+                        if let amount = Double(pastSalaryAmount) {
+                            withAnimation {
+                                let key = DateHelpers.monthKey(for: pastMonthDate)
+                                let month = viewModel.fetchOrCreateMonth(key: key)
+                                month.creditedDate = pastMonthDate
+                                viewModel.confirmIncome(month: month, actualSalary: amount)
+                                allMonths = viewModel.fetchAllMonths()
+                                showingAddPastSalary = false
+                                pastSalaryAmount = ""
+                            }
+                        }
+                    }
+                    .font(.headline.weight(.bold))
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Double(pastSalaryAmount) == nil ? Color.gray.opacity(0.5) : Color.cyan)
+                    .foregroundStyle(.primary)
+                    .cornerRadius(16)
+                    .disabled(Double(pastSalaryAmount) == nil)
+                    
+                    Spacer()
+                }
+                .padding()
+                .navigationTitle("Add Past Salary")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                            showingAddPastSalary = false
+                        }
+                        .foregroundStyle(.cyan)
+                    }
+                }
+            }
+        }
     }
     
     private func addExtraForm(_ month: MonthlyIncome) -> some View {

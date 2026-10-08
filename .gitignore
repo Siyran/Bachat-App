@@ -37,3 +37,4 @@ Carthage/Build/
 .DS_Store
 *.swp
 *~.nib
+*.log
