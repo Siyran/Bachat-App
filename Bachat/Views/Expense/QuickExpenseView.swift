@@ -254,6 +254,7 @@ struct QuickExpenseView: View {
         
         // Reset and show feedback
         withAnimation {
+            isInputActive = false
             amountText = ""
             note = ""
             showSuccess = true
