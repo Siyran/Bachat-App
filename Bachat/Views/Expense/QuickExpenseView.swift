@@ -226,18 +226,23 @@ struct QuickExpenseView: View {
         guard let amount = Double(amountText) else { return }
         let ratio = isShared ? ((Double(splitRatioText) ?? 50.0) / 100.0) : 1.0
         
-        let currentUserEmail = Auth.auth().currentUser?.email?.lowercased() ?? ""
+        let fallbackEmail = Auth.auth().currentUser?.email?.lowercased() ?? ""
         var computedRoommateEmail = ""
-        var finalPaidByEmail = currentUserEmail
+        var finalPaidByEmail = fallbackEmail
+        var finalSharedWithEmail = fallbackEmail
         
         if isShared {
-            let userSettings = settings.first(where: { $0.ownerEmail == currentUserEmail })
+            let userSettings = settings.first(where: { $0.ownerEmail == fallbackEmail })
             computedRoommateEmail = userSettings?.partnerEmail.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             if computedRoommateEmail.isEmpty {
                 computedRoommateEmail = "roommate@local"
             }
             if paidByPartner {
                 finalPaidByEmail = computedRoommateEmail
+                finalSharedWithEmail = fallbackEmail // I am the one it's shared with
+            } else {
+                finalPaidByEmail = fallbackEmail
+                finalSharedWithEmail = computedRoommateEmail // Amir is the one it's shared with
             }
         }
         
@@ -248,7 +253,7 @@ struct QuickExpenseView: View {
             date: date,
             isShared: isShared,
             splitRatio: ratio,
-            sharedWithEmail: computedRoommateEmail,
+            sharedWithEmail: finalSharedWithEmail,
             paidByEmail: finalPaidByEmail
         )
         
