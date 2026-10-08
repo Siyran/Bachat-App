@@ -6,7 +6,7 @@ It is built with an **offline-first** architecture using **SwiftData**, securely
 
 ---
 
-## 🚀 Features (From A to Z)
+## 🚀 Features 
 
 ### 1. Multi-User Sandboxing & Identity
 - **Firebase Auth:** Login via email/password.
