@@ -47,6 +47,7 @@
 		C8A64464E932715B834146D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C78EDD2D3AED712CEF7BC7 /* ContentView.swift */; };
 		CE119C5C1F5A24886BE5EF27 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4097E46A0C04050E456315 /* GoalViewModel.swift */; };
 		D3CF1E56DC25925C20752CD9 /* GoalEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755D960B8389F29E1441D0EE /* GoalEngineTests.swift */; };
+		D4B1CBE385B7D3434D69E73A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842F1DA1B7E22D6AD8AB6833 /* Assets.xcassets */; };
 		D63566C45E7BBBF39AE7EE2E /* BudgetEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBE8FD1A229FBAFB26BA5F7 /* BudgetEngineTests.swift */; };
 		E3863420220E96619FA16846 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE1A0BEDEF25A86E3D0825 /* AuthManager.swift */; };
 		E4E8C28E126051065D021D54 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BAE1B660826986DED7058 /* ExpenseCategory.swift */; };
@@ -85,6 +86,7 @@
 		755D960B8389F29E1441D0EE /* GoalEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEngineTests.swift; sourceTree = "<group>"; };
 		82948AB0D9191E5EE35477F7 /* IncomeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeEntry.swift; sourceTree = "<group>"; };
 		82DC0413315DB2975ED80A6D /* BachatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BachatApp.swift; sourceTree = "<group>"; };
+		842F1DA1B7E22D6AD8AB6833 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F371CFDB9B6C1425DD1A3FF /* IncomeBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeBanner.swift; sourceTree = "<group>"; };
 		9A71E5F9AE3B93A884EB8C1E /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
 		9A7C092D60BCBCF94286BD40 /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				818C508CC72DDF13CC8BA923 /* Utilities */,
 				4069A152C04C56F2921CA819 /* ViewModels */,
 				35108F4A4BC9BE10320D65CE /* Views */,
+				842F1DA1B7E22D6AD8AB6833 /* Assets.xcassets */,
 			);
 			path = Bachat;
 			sourceTree = "<group>";
@@ -317,8 +320,6 @@
 				A0D6617BF9F28AC05F61E787 /* PBXTargetDependency */,
 			);
 			name = BachatTests;
-			packageProductDependencies = (
-			);
 			productName = BachatTests;
 			productReference = D27B3E7FC692054A0CD58EC2 /* BachatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -383,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BD3FDCC5A1B0B83E97125A9 /* GoogleService-Info.plist in Resources */,
+				D4B1CBE385B7D3434D69E73A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
