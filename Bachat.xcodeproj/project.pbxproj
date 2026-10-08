@@ -1,0 +1,724 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0273419EA0D6EF6D6CF16F1E /* IncomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A71E5F9AE3B93A884EB8C1E /* IncomeViewModel.swift */; };
+		09EBA0756AE53567EDD76E52 /* GoalEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599D19B77782FE8957C27D73 /* GoalEngine.swift */; };
+		0AC6FED3B8C02882D244F954 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC446EF93088B49C51E0B7C /* GoalView.swift */; };
+		0E2EA9A35A2040CF71B92EE2 /* ExpenseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EDB46579C076CA8A5B2D2A /* ExpenseListView.swift */; };
+		16A9AE0E5B8E588339FC8356 /* BachatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DC0413315DB2975ED80A6D /* BachatApp.swift */; };
+		1F27B02941706AC51074BFEB /* DateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A593E3CAE34C6379FA56C279 /* DateHelpers.swift */; };
+		1FA5F592E0CCC97D304E6EA4 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7C092D60BCBCF94286BD40 /* AccountBalance.swift */; };
+		25409D75D08E5EEC11375A13 /* BudgetEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD25CCC1124F995C06E3CD9 /* BudgetEngine.swift */; };
+		2AAD70183360126A7108493C /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACEFC25D35A67CFE6DD602B /* InsightsView.swift */; };
+		2E63A2C140C8431E7ECACAA1 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A26320252985786134009B /* BudgetView.swift */; };
+		37926736612BBD6AB3BA1452 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEE2EDF3DCDC623DE7E359C /* Constants.swift */; };
+		3AF92AB7BAD237011FCB3318 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E97C9A2C179DA23380F88BE0 /* FirebaseFirestoreSwift */; };
+		3FB592BB8C71D785FDA58843 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D59002D18170E4C36C51F7 /* DashboardViewModel.swift */; };
+		421D36B94B6D0121A056D385 /* SavingsGoal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65085FBF4E029D01192CE5C /* SavingsGoal.swift */; };
+		44016EC1F3744D2175BFEA28 /* IncomeEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6768A4364B06BF058DFE8F /* IncomeEntryView.swift */; };
+		50F1DCEB562A90E08786C96A /* BudgetConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7708D49A7103C089E809380 /* BudgetConfig.swift */; };
+		585C8CF55F9F58D2DEE2CB66 /* IncomeEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103F00D56154E3EF01992BB1 /* IncomeEngineTests.swift */; };
+		58811C8326D11531FE2C23A0 /* IncomeBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F371CFDB9B6C1425DD1A3FF /* IncomeBanner.swift */; };
+		617FDA6936C997D5938DA4DA /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1CE679752722990AD73C9C /* ExpenseViewModel.swift */; };
+		656391E2F8AC13D4883D40A1 /* SalaryAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735B7C75A09B1FB5F543A14B /* SalaryAction.swift */; };
+		68C6C25460FAB39DC5BF8179 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 45488F332A0F24915B73884B /* FirebaseFirestore */; };
+		700A9071A9C3EBACF3E3B24A /* MonthlyIncome.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DE51EC2733F3E91A41537D /* MonthlyIncome.swift */; };
+		715552F8657613CE007C9CEF /* IncomeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF333DD6482C5D4C730EDAB6 /* IncomeEngine.swift */; };
+		762F308B4AB056A608428222 /* ExpenseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9DBB97A6198BFEE07F7277 /* ExpenseRowView.swift */; };
+		816E9787C33A30C997764A6F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2CC55824FB20C3B1E4FA6283 /* FirebaseAuth */; };
+		84B192D80B329A0163E195E4 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC31B4E49A2079889AB50CD2 /* BudgetViewModel.swift */; };
+		87FA87B65ECB96E52DDDE6EF /* IncomeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82948AB0D9191E5EE35477F7 /* IncomeEntry.swift */; };
+		8BD3FDCC5A1B0B83E97125A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 076CECC34B83C9E7F33480C3 /* GoogleService-Info.plist */; };
+		948B6B5DDA1899E1513071F7 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCA0D78543BAFA428E64FC /* UserSettings.swift */; };
+		95E1AA184E317BF1D42F2A47 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F87A9139C45C7F32EDFE3EF /* FirestoreService.swift */; };
+		9BDE3C87D9C5296FD31C1365 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA646375B32F589A8736F2A7 /* SettingsView.swift */; };
+		9BE6CE9B269551785DC5A163 /* CategoryBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCBC19CD7D284514054C6C7 /* CategoryBudget.swift */; };
+		A16339C86BD82E9C435822D4 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CA6A98881BE57210F87C93 /* Expense.swift */; };
+		A7E2587FE51E544D0AACCB3F /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D65EE37DEB8D2F55197374B /* CurrencyFormatter.swift */; };
+		B32055773057BE7C8572DFA7 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582F913541A19D84F98F3D3 /* DashboardView.swift */; };
+		BF87F9701D96F410F716C7C4 /* QuickExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03FAD00605ADE3BA03392E6 /* QuickExpenseView.swift */; };
+		C543425008347BBA76BAE83D /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5AFA9671B43AE8889A2A57 /* NotificationManager.swift */; };
+		C8A64464E932715B834146D3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C78EDD2D3AED712CEF7BC7 /* ContentView.swift */; };
+		CE119C5C1F5A24886BE5EF27 /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4097E46A0C04050E456315 /* GoalViewModel.swift */; };
+		D3CF1E56DC25925C20752CD9 /* GoalEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755D960B8389F29E1441D0EE /* GoalEngineTests.swift */; };
+		D63566C45E7BBBF39AE7EE2E /* BudgetEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBE8FD1A229FBAFB26BA5F7 /* BudgetEngineTests.swift */; };
+		E3863420220E96619FA16846 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE1A0BEDEF25A86E3D0825 /* AuthManager.swift */; };
+		E4E8C28E126051065D021D54 /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BAE1B660826986DED7058 /* ExpenseCategory.swift */; };
+		F728CE4B7858ACB7AF7E4B82 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C420A84B5252BCE2C4A5AA /* LoginView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		11FCB24CCC74C98C4DD773CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5105CEBB6B0AE57CEAC5C344 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC58F6CF9CDD87DB686B75CC;
+			remoteInfo = Bachat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		076CECC34B83C9E7F33480C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0ACEFC25D35A67CFE6DD602B /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		0FCBC19CD7D284514054C6C7 /* CategoryBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryBudget.swift; sourceTree = "<group>"; };
+		103F00D56154E3EF01992BB1 /* IncomeEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeEngineTests.swift; sourceTree = "<group>"; };
+		19DCA0D78543BAFA428E64FC /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		1D65EE37DEB8D2F55197374B /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		3A5AFA9671B43AE8889A2A57 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		3B78BE86F7E987513D1F9D3D /* Bachat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bachat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BD25CCC1124F995C06E3CD9 /* BudgetEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetEngine.swift; sourceTree = "<group>"; };
+		3F87A9139C45C7F32EDFE3EF /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		45AE1A0BEDEF25A86E3D0825 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		599D19B77782FE8957C27D73 /* GoalEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEngine.swift; sourceTree = "<group>"; };
+		5BEE2EDF3DCDC623DE7E359C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5E6768A4364B06BF058DFE8F /* IncomeEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeEntryView.swift; sourceTree = "<group>"; };
+		61D59002D18170E4C36C51F7 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		667BAE1B660826986DED7058 /* ExpenseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
+		72EDB46579C076CA8A5B2D2A /* ExpenseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseListView.swift; sourceTree = "<group>"; };
+		735B7C75A09B1FB5F543A14B /* SalaryAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaryAction.swift; sourceTree = "<group>"; };
+		755D960B8389F29E1441D0EE /* GoalEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEngineTests.swift; sourceTree = "<group>"; };
+		82948AB0D9191E5EE35477F7 /* IncomeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeEntry.swift; sourceTree = "<group>"; };
+		82DC0413315DB2975ED80A6D /* BachatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BachatApp.swift; sourceTree = "<group>"; };
+		8F371CFDB9B6C1425DD1A3FF /* IncomeBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeBanner.swift; sourceTree = "<group>"; };
+		9A71E5F9AE3B93A884EB8C1E /* IncomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeViewModel.swift; sourceTree = "<group>"; };
+		9A7C092D60BCBCF94286BD40 /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
+		A03FAD00605ADE3BA03392E6 /* QuickExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExpenseView.swift; sourceTree = "<group>"; };
+		A1DE51EC2733F3E91A41537D /* MonthlyIncome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyIncome.swift; sourceTree = "<group>"; };
+		A582F913541A19D84F98F3D3 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		A593E3CAE34C6379FA56C279 /* DateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelpers.swift; sourceTree = "<group>"; };
+		A9A26320252985786134009B /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		B7CA6A98881BE57210F87C93 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		C59DA40E5577C873DF7A3783 /* Bachat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bachat.entitlements; sourceTree = "<group>"; };
+		CF333DD6482C5D4C730EDAB6 /* IncomeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeEngine.swift; sourceTree = "<group>"; };
+		D27B3E7FC692054A0CD58EC2 /* BachatTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BachatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5C78EDD2D3AED712CEF7BC7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D6C420A84B5252BCE2C4A5AA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		DA646375B32F589A8736F2A7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EC1CE679752722990AD73C9C /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
+		EE4097E46A0C04050E456315 /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
+		F65085FBF4E029D01192CE5C /* SavingsGoal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsGoal.swift; sourceTree = "<group>"; };
+		F7708D49A7103C089E809380 /* BudgetConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetConfig.swift; sourceTree = "<group>"; };
+		FC31B4E49A2079889AB50CD2 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
+		FEBE8FD1A229FBAFB26BA5F7 /* BudgetEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetEngineTests.swift; sourceTree = "<group>"; };
+		FF9DBB97A6198BFEE07F7277 /* ExpenseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRowView.swift; sourceTree = "<group>"; };
+		FFC446EF93088B49C51E0B7C /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		33AB15D1206BCBAF9B6999EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				816E9787C33A30C997764A6F /* FirebaseAuth in Frameworks */,
+				68C6C25460FAB39DC5BF8179 /* FirebaseFirestore in Frameworks */,
+				3AF92AB7BAD237011FCB3318 /* FirebaseFirestoreSwift in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21B438DE53D12989F31C5702 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				45AE1A0BEDEF25A86E3D0825 /* AuthManager.swift */,
+				3BD25CCC1124F995C06E3CD9 /* BudgetEngine.swift */,
+				1D65EE37DEB8D2F55197374B /* CurrencyFormatter.swift */,
+				3F87A9139C45C7F32EDFE3EF /* FirestoreService.swift */,
+				599D19B77782FE8957C27D73 /* GoalEngine.swift */,
+				CF333DD6482C5D4C730EDAB6 /* IncomeEngine.swift */,
+				3A5AFA9671B43AE8889A2A57 /* NotificationManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2BC90A1F59E0EAA94D415028 /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+				72EDB46579C076CA8A5B2D2A /* ExpenseListView.swift */,
+				FF9DBB97A6198BFEE07F7277 /* ExpenseRowView.swift */,
+				A03FAD00605ADE3BA03392E6 /* QuickExpenseView.swift */,
+			);
+			path = Expense;
+			sourceTree = "<group>";
+		};
+		35108F4A4BC9BE10320D65CE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7097BAF494493382E06813AE /* Auth */,
+				55790ADBFD73796B90D6AC56 /* Budget */,
+				9B48936D5187AFA27BA8C110 /* Dashboard */,
+				2BC90A1F59E0EAA94D415028 /* Expense */,
+				CB6634BD92FDC4F43575B11A /* Goal */,
+				7FD399AE1C5C19F079E00235 /* Income */,
+				E945C8B64FCB32A2BB7F7A39 /* Insights */,
+				F6667F27FB75D86CD222C064 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4069A152C04C56F2921CA819 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FC31B4E49A2079889AB50CD2 /* BudgetViewModel.swift */,
+				61D59002D18170E4C36C51F7 /* DashboardViewModel.swift */,
+				EC1CE679752722990AD73C9C /* ExpenseViewModel.swift */,
+				EE4097E46A0C04050E456315 /* GoalViewModel.swift */,
+				9A71E5F9AE3B93A884EB8C1E /* IncomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		55790ADBFD73796B90D6AC56 /* Budget */ = {
+			isa = PBXGroup;
+			children = (
+				A9A26320252985786134009B /* BudgetView.swift */,
+			);
+			path = Budget;
+			sourceTree = "<group>";
+		};
+		5F42FB14623B05341050C708 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B78BE86F7E987513D1F9D3D /* Bachat.app */,
+				D27B3E7FC692054A0CD58EC2 /* BachatTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7097BAF494493382E06813AE /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				D6C420A84B5252BCE2C4A5AA /* LoginView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		7842172EF52606E5A532575F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9A7C092D60BCBCF94286BD40 /* AccountBalance.swift */,
+				F7708D49A7103C089E809380 /* BudgetConfig.swift */,
+				0FCBC19CD7D284514054C6C7 /* CategoryBudget.swift */,
+				B7CA6A98881BE57210F87C93 /* Expense.swift */,
+				667BAE1B660826986DED7058 /* ExpenseCategory.swift */,
+				82948AB0D9191E5EE35477F7 /* IncomeEntry.swift */,
+				A1DE51EC2733F3E91A41537D /* MonthlyIncome.swift */,
+				735B7C75A09B1FB5F543A14B /* SalaryAction.swift */,
+				F65085FBF4E029D01192CE5C /* SavingsGoal.swift */,
+				19DCA0D78543BAFA428E64FC /* UserSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7FD399AE1C5C19F079E00235 /* Income */ = {
+			isa = PBXGroup;
+			children = (
+				8F371CFDB9B6C1425DD1A3FF /* IncomeBanner.swift */,
+				5E6768A4364B06BF058DFE8F /* IncomeEntryView.swift */,
+			);
+			path = Income;
+			sourceTree = "<group>";
+		};
+		818C508CC72DDF13CC8BA923 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5BEE2EDF3DCDC623DE7E359C /* Constants.swift */,
+				A593E3CAE34C6379FA56C279 /* DateHelpers.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9B48936D5187AFA27BA8C110 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				A582F913541A19D84F98F3D3 /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		A15D40AEDD3E74B9D5F488BA = {
+			isa = PBXGroup;
+			children = (
+				D8684D43B29A4DB7A6B32B1C /* Bachat */,
+				D58F661B5B034A22266AC125 /* BachatTests */,
+				5F42FB14623B05341050C708 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB6634BD92FDC4F43575B11A /* Goal */ = {
+			isa = PBXGroup;
+			children = (
+				FFC446EF93088B49C51E0B7C /* GoalView.swift */,
+			);
+			path = Goal;
+			sourceTree = "<group>";
+		};
+		D58F661B5B034A22266AC125 /* BachatTests */ = {
+			isa = PBXGroup;
+			children = (
+				FEBE8FD1A229FBAFB26BA5F7 /* BudgetEngineTests.swift */,
+				755D960B8389F29E1441D0EE /* GoalEngineTests.swift */,
+				103F00D56154E3EF01992BB1 /* IncomeEngineTests.swift */,
+			);
+			path = BachatTests;
+			sourceTree = "<group>";
+		};
+		D8684D43B29A4DB7A6B32B1C /* Bachat */ = {
+			isa = PBXGroup;
+			children = (
+				C59DA40E5577C873DF7A3783 /* Bachat.entitlements */,
+				82DC0413315DB2975ED80A6D /* BachatApp.swift */,
+				D5C78EDD2D3AED712CEF7BC7 /* ContentView.swift */,
+				076CECC34B83C9E7F33480C3 /* GoogleService-Info.plist */,
+				7842172EF52606E5A532575F /* Models */,
+				21B438DE53D12989F31C5702 /* Services */,
+				818C508CC72DDF13CC8BA923 /* Utilities */,
+				4069A152C04C56F2921CA819 /* ViewModels */,
+				35108F4A4BC9BE10320D65CE /* Views */,
+			);
+			path = Bachat;
+			sourceTree = "<group>";
+		};
+		E945C8B64FCB32A2BB7F7A39 /* Insights */ = {
+			isa = PBXGroup;
+			children = (
+				0ACEFC25D35A67CFE6DD602B /* InsightsView.swift */,
+			);
+			path = Insights;
+			sourceTree = "<group>";
+		};
+		F6667F27FB75D86CD222C064 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DA646375B32F589A8736F2A7 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A9E73DCDF8CEFEAC18A025EC /* BachatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 943250B3154E6DA8BD11F5B1 /* Build configuration list for PBXNativeTarget "BachatTests" */;
+			buildPhases = (
+				D05B5F3B82F06BA4E0144421 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0D6617BF9F28AC05F61E787 /* PBXTargetDependency */,
+			);
+			name = BachatTests;
+			packageProductDependencies = (
+			);
+			productName = BachatTests;
+			productReference = D27B3E7FC692054A0CD58EC2 /* BachatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CC58F6CF9CDD87DB686B75CC /* Bachat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 496DF61406C0673EDE12A563 /* Build configuration list for PBXNativeTarget "Bachat" */;
+			buildPhases = (
+				38A09DEA897DF4441C0100A7 /* Sources */,
+				B966682DCC087C543AB488E3 /* Resources */,
+				33AB15D1206BCBAF9B6999EF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bachat;
+			packageProductDependencies = (
+				2CC55824FB20C3B1E4FA6283 /* FirebaseAuth */,
+				45488F332A0F24915B73884B /* FirebaseFirestore */,
+				E97C9A2C179DA23380F88BE0 /* FirebaseFirestoreSwift */,
+			);
+			productName = Bachat;
+			productReference = 3B78BE86F7E987513D1F9D3D /* Bachat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5105CEBB6B0AE57CEAC5C344 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = A049FC81BCDE2ED6706F0AE3 /* Build configuration list for PBXProject "Bachat" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A15D40AEDD3E74B9D5F488BA;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				941B8BE2B8A5C8EE6EA4BE1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5F42FB14623B05341050C708 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC58F6CF9CDD87DB686B75CC /* Bachat */,
+				A9E73DCDF8CEFEAC18A025EC /* BachatTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B966682DCC087C543AB488E3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BD3FDCC5A1B0B83E97125A9 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		38A09DEA897DF4441C0100A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1FA5F592E0CCC97D304E6EA4 /* AccountBalance.swift in Sources */,
+				E3863420220E96619FA16846 /* AuthManager.swift in Sources */,
+				16A9AE0E5B8E588339FC8356 /* BachatApp.swift in Sources */,
+				50F1DCEB562A90E08786C96A /* BudgetConfig.swift in Sources */,
+				25409D75D08E5EEC11375A13 /* BudgetEngine.swift in Sources */,
+				2E63A2C140C8431E7ECACAA1 /* BudgetView.swift in Sources */,
+				84B192D80B329A0163E195E4 /* BudgetViewModel.swift in Sources */,
+				9BE6CE9B269551785DC5A163 /* CategoryBudget.swift in Sources */,
+				37926736612BBD6AB3BA1452 /* Constants.swift in Sources */,
+				C8A64464E932715B834146D3 /* ContentView.swift in Sources */,
+				A7E2587FE51E544D0AACCB3F /* CurrencyFormatter.swift in Sources */,
+				B32055773057BE7C8572DFA7 /* DashboardView.swift in Sources */,
+				3FB592BB8C71D785FDA58843 /* DashboardViewModel.swift in Sources */,
+				1F27B02941706AC51074BFEB /* DateHelpers.swift in Sources */,
+				A16339C86BD82E9C435822D4 /* Expense.swift in Sources */,
+				E4E8C28E126051065D021D54 /* ExpenseCategory.swift in Sources */,
+				0E2EA9A35A2040CF71B92EE2 /* ExpenseListView.swift in Sources */,
+				762F308B4AB056A608428222 /* ExpenseRowView.swift in Sources */,
+				617FDA6936C997D5938DA4DA /* ExpenseViewModel.swift in Sources */,
+				95E1AA184E317BF1D42F2A47 /* FirestoreService.swift in Sources */,
+				09EBA0756AE53567EDD76E52 /* GoalEngine.swift in Sources */,
+				0AC6FED3B8C02882D244F954 /* GoalView.swift in Sources */,
+				CE119C5C1F5A24886BE5EF27 /* GoalViewModel.swift in Sources */,
+				58811C8326D11531FE2C23A0 /* IncomeBanner.swift in Sources */,
+				715552F8657613CE007C9CEF /* IncomeEngine.swift in Sources */,
+				87FA87B65ECB96E52DDDE6EF /* IncomeEntry.swift in Sources */,
+				44016EC1F3744D2175BFEA28 /* IncomeEntryView.swift in Sources */,
+				0273419EA0D6EF6D6CF16F1E /* IncomeViewModel.swift in Sources */,
+				2AAD70183360126A7108493C /* InsightsView.swift in Sources */,
+				F728CE4B7858ACB7AF7E4B82 /* LoginView.swift in Sources */,
+				700A9071A9C3EBACF3E3B24A /* MonthlyIncome.swift in Sources */,
+				C543425008347BBA76BAE83D /* NotificationManager.swift in Sources */,
+				BF87F9701D96F410F716C7C4 /* QuickExpenseView.swift in Sources */,
+				656391E2F8AC13D4883D40A1 /* SalaryAction.swift in Sources */,
+				421D36B94B6D0121A056D385 /* SavingsGoal.swift in Sources */,
+				9BDE3C87D9C5296FD31C1365 /* SettingsView.swift in Sources */,
+				948B6B5DDA1899E1513071F7 /* UserSettings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D05B5F3B82F06BA4E0144421 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D63566C45E7BBBF39AE7EE2E /* BudgetEngineTests.swift in Sources */,
+				D3CF1E56DC25925C20752CD9 /* GoalEngineTests.swift in Sources */,
+				585C8CF55F9F58D2DEE2CB66 /* IncomeEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A0D6617BF9F28AC05F61E787 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC58F6CF9CDD87DB686B75CC /* Bachat */;
+			targetProxy = 11FCB24CCC74C98C4DD773CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0982C84561504E912AD333E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Bachat/Bachat.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				DEVELOPMENT_TEAM = YVTP543W39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bachat.Bachat;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1E3A2B365660C43FF35887B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EE42A9CB1B797E5C1C4A44C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Bachat/Bachat.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				DEVELOPMENT_TEAM = YVTP543W39;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bachat.Bachat;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		344C0B678E172286C063BA1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bachat.BachatTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bachat.app/Bachat";
+			};
+			name = Release;
+		};
+		BEA9E5070654E5004212FFDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bachat.BachatTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bachat.app/Bachat";
+			};
+			name = Debug;
+		};
+		FB628CE40C23D727B1361E46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		496DF61406C0673EDE12A563 /* Build configuration list for PBXNativeTarget "Bachat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EE42A9CB1B797E5C1C4A44C /* Debug */,
+				0982C84561504E912AD333E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		943250B3154E6DA8BD11F5B1 /* Build configuration list for PBXNativeTarget "BachatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEA9E5070654E5004212FFDD /* Debug */,
+				344C0B678E172286C063BA1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A049FC81BCDE2ED6706F0AE3 /* Build configuration list for PBXProject "Bachat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E3A2B365660C43FF35887B1 /* Debug */,
+				FB628CE40C23D727B1361E46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		941B8BE2B8A5C8EE6EA4BE1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.22.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CC55824FB20C3B1E4FA6283 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 941B8BE2B8A5C8EE6EA4BE1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		45488F332A0F24915B73884B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 941B8BE2B8A5C8EE6EA4BE1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		E97C9A2C179DA23380F88BE0 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 941B8BE2B8A5C8EE6EA4BE1C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 5105CEBB6B0AE57CEAC5C344 /* Project object */;
+}
