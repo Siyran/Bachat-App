@@ -19,6 +19,8 @@ struct DashboardView: View {
     @State private var mailError: Error?
     @State private var settleUpEmailAddress = ""
     @State private var settleUpMessage = ""
+    @State private var settleUpPDFData: Data? = nil
+    @State private var settleUpPDFName: String = ""
     
     private let monthKey = DateHelpers.monthKey()
     
@@ -285,6 +287,7 @@ struct DashboardView: View {
                             let fallbackPartnerEmail = "idaretoshare99@gmail.com"
                             let partnerEmail = userSettings?.partnerEmail.isEmpty == false ? userSettings!.partnerEmail : fallbackPartnerEmail
                             
+                            
                             settleUpEmailAddress = partnerEmail
                             
                             if isYouOwe {
@@ -292,6 +295,18 @@ struct DashboardView: View {
                             } else {
                                 settleUpMessage = "Hi \(partnerName),\n\nJust a quick reminder regarding our shared expenses. You currently owe me \(amountStr). Let's settle up soon!\n\nBest,\n\(userSettings?.userName ?? "Me")"
                             }
+                            
+                            let sharedExpenses = monthExpenses.filter { $0.isShared }
+                            settleUpPDFData = PDFGenerator.generateSettleUpPDF(
+                                expenses: sharedExpenses,
+                                month: monthKey,
+                                net: net,
+                                partnerName: partnerName,
+                                userName: userSettings?.userName ?? "Me",
+                                isYouOwe: isYouOwe,
+                                userEmail: userEmail
+                            )
+                            settleUpPDFName = "Settlement_Bill_\(monthKey).pdf"
                             
                             showMailSheet = true
                         }) {
@@ -323,7 +338,10 @@ struct DashboardView: View {
                          resultError: $mailError,
                          toRecipients: [settleUpEmailAddress],
                          subject: "Bachat Settle Up",
-                         messageBody: settleUpMessage)
+                         messageBody: settleUpMessage,
+                         attachmentData: settleUpPDFData,
+                         attachmentMimeType: "application/pdf",
+                         attachmentFileName: settleUpPDFName)
             }
         )
     }

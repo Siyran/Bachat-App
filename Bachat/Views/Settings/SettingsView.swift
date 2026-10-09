@@ -28,6 +28,7 @@ struct SettingsView: View {
     @State private var iciciBalance: String = ""
     @FocusState private var isInputActive: Bool
     @State private var saved = false
+    @State private var showingClearAlert = false
     
     var body: some View {
         NavigationStack {
@@ -53,6 +54,7 @@ struct SettingsView: View {
                         expenseSplitSection
                         budgetRulesSection
                         accountsSection
+                        actionsSection
                         
                         saveButton
                         
@@ -211,6 +213,33 @@ struct SettingsView: View {
                         .multilineTextAlignment(.trailing)
                         .frame(width: 120)
                 }
+            }
+        }
+    }
+    
+    private var actionsSection: some View {
+        glassSection(title: "Actions") {
+            Button(action: {
+                let currentMonthKey = DateHelpers.monthKey()
+                Task {
+                    try? await FirestoreService.shared.clearSharedExpenses(monthKey: currentMonthKey)
+                    await MainActor.run {
+                        showingClearAlert = true
+                    }
+                }
+            }) {
+                Text("Clear Settled Shared Expenses (This Month)")
+                    .font(.subheadline.weight(.semibold))
+                    .frame(maxWidth: .infinity)
+                    .padding()
+            }
+            .background(Color.green.opacity(0.2))
+            .foregroundStyle(.green)
+            .cornerRadius(12)
+            .alert("Expenses Cleared", isPresented: $showingClearAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("All shared expenses for this month have been successfully cleared.")
             }
         }
     }

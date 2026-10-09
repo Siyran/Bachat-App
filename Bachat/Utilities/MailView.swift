@@ -9,6 +9,10 @@ struct MailView: UIViewControllerRepresentable {
     var subject: String
     var messageBody: String
     
+    var attachmentData: Data? = nil
+    var attachmentMimeType: String? = nil
+    var attachmentFileName: String? = nil
+    
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         @Binding var isShowing: Bool
         @Binding var resultError: Error?
@@ -42,6 +46,11 @@ struct MailView: UIViewControllerRepresentable {
         vc.setToRecipients(toRecipients)
         vc.setSubject(subject)
         vc.setMessageBody(messageBody, isHTML: false)
+        
+        if let data = attachmentData, let mime = attachmentMimeType, let name = attachmentFileName {
+            vc.addAttachmentData(data, mimeType: mime, fileName: name)
+        }
+        
         return vc
     }
     

@@ -41,6 +41,29 @@ class FirestoreService {
         }
     }
     
+    func clearSharedExpenses(monthKey: String) async throws {
+        guard let rawEmail = Auth.auth().currentUser?.email else { return }
+        let email = rawEmail.lowercased()
+        
+        let query1 = try await db.collection("shared_expenses")
+            .whereField("monthKey", isEqualTo: monthKey)
+            .whereField("paidByEmail", isEqualTo: email)
+            .getDocuments()
+            
+        for doc in query1.documents {
+            try await doc.reference.delete()
+        }
+        
+        let query2 = try await db.collection("shared_expenses")
+            .whereField("monthKey", isEqualTo: monthKey)
+            .whereField("sharedWithEmail", isEqualTo: email)
+            .getDocuments()
+            
+        for doc in query2.documents {
+            try await doc.reference.delete()
+        }
+    }
+    
     // Listen to real-time expense updates for a specific month
     func listenToExpenses(monthKey: String, completion: @escaping ([Expense]) -> Void) -> [ListenerRegistration] {
         guard let uid = currentUserId, let rawEmail = Auth.auth().currentUser?.email else { return [] }
