@@ -277,46 +277,62 @@ struct DashboardView: View {
                             .foregroundStyle(net < 0 ? .red : .primary.opacity(0.5))
                     }
                     if net != 0 {
-                        Button(action: {
-                            if !MFMailComposeViewController.canSendMail() {
-                                showMailErrorAlert = true
-                                return
+                        HStack(spacing: 12) {
+                            Button(action: {
+                                if !MFMailComposeViewController.canSendMail() {
+                                    showMailErrorAlert = true
+                                    return
+                                }
+                                let isYouOwe = net < 0
+                                let amountStr = CurrencyFormatter.format(abs(net))
+                                let fallbackPartnerEmail = "idaretoshare99@gmail.com"
+                                let partnerEmail = userSettings?.partnerEmail.isEmpty == false ? userSettings!.partnerEmail : fallbackPartnerEmail
+                                
+                                
+                                settleUpEmailAddress = partnerEmail
+                                
+                                if isYouOwe {
+                                    settleUpMessage = "Hi \(partnerName),\n\nHere's a note regarding our shared expenses. I currently owe you \(amountStr). Let's settle up!\n\nBest,\n\(userSettings?.userName ?? "Me")"
+                                } else {
+                                    settleUpMessage = "Hi \(partnerName),\n\nJust a quick reminder regarding our shared expenses. You currently owe me \(amountStr). Let's settle up soon!\n\nBest,\n\(userSettings?.userName ?? "Me")"
+                                }
+                                
+                                let sharedExpenses = monthExpenses.filter { $0.isShared }
+                                settleUpPDFData = PDFGenerator.generateSettleUpPDF(
+                                    expenses: sharedExpenses,
+                                    month: monthKey,
+                                    net: net,
+                                    partnerName: partnerName,
+                                    userName: userSettings?.userName ?? "Me",
+                                    isYouOwe: isYouOwe,
+                                    userEmail: userEmail
+                                )
+                                settleUpPDFName = "Settlement_Bill_\(monthKey).pdf"
+                                
+                                showMailSheet = true
+                            }) {
+                                Text(net < 0 ? "Email Bill" : "Email Reminder")
+                                    .font(.subheadline.weight(.semibold))
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 10)
+                                    .background(Color.cyan.opacity(0.15))
+                                    .foregroundStyle(.cyan)
+                                    .cornerRadius(12)
                             }
-                            let isYouOwe = net < 0
-                            let amountStr = CurrencyFormatter.format(abs(net))
-                            let fallbackPartnerEmail = "idaretoshare99@gmail.com"
-                            let partnerEmail = userSettings?.partnerEmail.isEmpty == false ? userSettings!.partnerEmail : fallbackPartnerEmail
                             
-                            
-                            settleUpEmailAddress = partnerEmail
-                            
-                            if isYouOwe {
-                                settleUpMessage = "Hi \(partnerName),\n\nHere's a note regarding our shared expenses. I currently owe you \(amountStr). Let's settle up!\n\nBest,\n\(userSettings?.userName ?? "Me")"
-                            } else {
-                                settleUpMessage = "Hi \(partnerName),\n\nJust a quick reminder regarding our shared expenses. You currently owe me \(amountStr). Let's settle up soon!\n\nBest,\n\(userSettings?.userName ?? "Me")"
+                            Button(action: {
+                                Task {
+                                    try? await FirestoreService.shared.clearSharedExpenses(monthKey: monthKey)
+                                }
+                            }) {
+                                Text("Mark as Settled")
+                                    .font(.subheadline.weight(.semibold))
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 10)
+                                    .background(Color.green.opacity(0.15))
+                                    .foregroundStyle(.green)
+                                    .cornerRadius(12)
                             }
-                            
-                            let sharedExpenses = monthExpenses.filter { $0.isShared }
-                            settleUpPDFData = PDFGenerator.generateSettleUpPDF(
-                                expenses: sharedExpenses,
-                                month: monthKey,
-                                net: net,
-                                partnerName: partnerName,
-                                userName: userSettings?.userName ?? "Me",
-                                isYouOwe: isYouOwe,
-                                userEmail: userEmail
-                            )
-                            settleUpPDFName = "Settlement_Bill_\(monthKey).pdf"
-                            
-                            showMailSheet = true
-                        }) {
-                            Text(net < 0 ? "Settle Up via Email" : "Send Reminder Email")
-                                .font(.subheadline.weight(.semibold))
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 10)
-                                .background(Color.cyan.opacity(0.15))
-                                .foregroundStyle(.cyan)
-                                .cornerRadius(12)
                         }
                         .padding(.top, 8)
                     }
