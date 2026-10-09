@@ -3,6 +3,16 @@ import SwiftData
 import FirebaseAuth
 import MessageUI
 
+struct MailData: Identifiable {
+    let id = UUID()
+    let toRecipients: [String]
+    let subject: String
+    let messageBody: String
+    let attachmentData: Data?
+    let attachmentMimeType: String?
+    let attachmentFileName: String?
+}
+
 struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
     @StateObject private var viewModel: DashboardViewModel
@@ -14,13 +24,9 @@ struct DashboardView: View {
     @State private var accounts: [AccountBalance] = []
     @State private var goal: SavingsGoal?
     
-    @State private var showMailSheet = false
+    @State private var activeMailData: MailData?
     @State private var showMailErrorAlert = false
     @State private var mailError: Error?
-    @State private var settleUpEmailAddress = ""
-    @State private var settleUpMessage = ""
-    @State private var settleUpPDFData: Data? = nil
-    @State private var settleUpPDFName: String = ""
     
     private let monthKey = DateHelpers.monthKey()
     
@@ -288,17 +294,15 @@ struct DashboardView: View {
                                 let fallbackPartnerEmail = "idaretoshare99@gmail.com"
                                 let partnerEmail = userSettings?.partnerEmail.isEmpty == false ? userSettings!.partnerEmail : fallbackPartnerEmail
                                 
-                                
-                                settleUpEmailAddress = partnerEmail
-                                
+                                let finalMessageBody: String
                                 if isYouOwe {
-                                    settleUpMessage = "Hi \(partnerName),\n\nHere's a note regarding our shared expenses. I currently owe you \(amountStr). Let's settle up!\n\nBest,\n\(userSettings?.userName ?? "Me")"
+                                    finalMessageBody = "Hi \(partnerName),\n\nHere's a note regarding our shared expenses. I currently owe you \(amountStr). Let's settle up!\n\nBest,\n\(userSettings?.userName ?? "Me")"
                                 } else {
-                                    settleUpMessage = "Hi \(partnerName),\n\nJust a quick reminder regarding our shared expenses. You currently owe me \(amountStr). Let's settle up soon!\n\nBest,\n\(userSettings?.userName ?? "Me")"
+                                    finalMessageBody = "Hi \(partnerName),\n\nJust a quick reminder regarding our shared expenses. You currently owe me \(amountStr). Let's settle up soon!\n\nBest,\n\(userSettings?.userName ?? "Me")"
                                 }
                                 
                                 let sharedExpenses = monthExpenses.filter { $0.isShared }
-                                settleUpPDFData = PDFGenerator.generateSettleUpPDF(
+                                let pdfData = PDFGenerator.generateSettleUpPDF(
                                     expenses: sharedExpenses,
                                     month: monthKey,
                                     net: net,
@@ -307,9 +311,15 @@ struct DashboardView: View {
                                     isYouOwe: isYouOwe,
                                     userEmail: userEmail
                                 )
-                                settleUpPDFName = "Settlement_Bill_\(monthKey).pdf"
                                 
-                                showMailSheet = true
+                                activeMailData = MailData(
+                                    toRecipients: [partnerEmail],
+                                    subject: "Bachat Settle Up",
+                                    messageBody: finalMessageBody,
+                                    attachmentData: pdfData,
+                                    attachmentMimeType: "application/pdf",
+                                    attachmentFileName: "Settlement_Bill_\(monthKey).pdf"
+                                )
                             }) {
                                 Text(net < 0 ? "Email Bill" : "Email Reminder")
                                     .font(.subheadline.weight(.semibold))
@@ -349,15 +359,18 @@ struct DashboardView: View {
             } message: {
                 Text("Please configure an email account on this device (or run on a physical device) to send emails.")
             }
-            .sheet(isPresented: $showMailSheet) {
-                MailView(isShowing: $showMailSheet,
+            .sheet(item: $activeMailData) { mailData in
+                MailView(isShowing: Binding(
+                            get: { activeMailData != nil },
+                            set: { if !$0 { activeMailData = nil } }
+                         ),
                          resultError: $mailError,
-                         toRecipients: [settleUpEmailAddress],
-                         subject: "Bachat Settle Up",
-                         messageBody: settleUpMessage,
-                         attachmentData: settleUpPDFData,
-                         attachmentMimeType: "application/pdf",
-                         attachmentFileName: settleUpPDFName)
+                         toRecipients: mailData.toRecipients,
+                         subject: mailData.subject,
+                         messageBody: mailData.messageBody,
+                         attachmentData: mailData.attachmentData,
+                         attachmentMimeType: mailData.attachmentMimeType,
+                         attachmentFileName: mailData.attachmentFileName)
             }
         )
     }
