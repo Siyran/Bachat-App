@@ -3,6 +3,7 @@ import SwiftData
 
 struct GoalView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel: GoalViewModel
     
     @State private var goal: SavingsGoal?
@@ -68,6 +69,15 @@ struct GoalView: View {
     
     private var headerView: some View {
         HStack {
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.title2.weight(.bold))
+                    .foregroundStyle(.primary)
+                    .padding(.trailing, 8)
+            }
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text("Goals")
                     .font(.largeTitle.weight(.bold))

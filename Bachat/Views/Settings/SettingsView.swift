@@ -4,6 +4,7 @@ import FirebaseAuth
 
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     @Query private var settings: [UserSettings]
     @Query private var configs: [BudgetConfig]
     @Query private var accounts: [AccountBalance]
@@ -76,6 +77,15 @@ struct SettingsView: View {
     
     private var headerView: some View {
         HStack {
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.title2.weight(.bold))
+                    .foregroundStyle(.primary)
+                    .padding(.trailing, 8)
+            }
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text("Settings")
                     .font(.largeTitle.weight(.bold))

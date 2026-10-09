@@ -3,6 +3,7 @@ import SwiftData
 
 struct InsightsView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var expenseViewModel = ExpenseViewModel()
     @Query private var allIncomes: [MonthlyIncome]
     @Query private var configs: [BudgetConfig]
@@ -49,6 +50,15 @@ struct InsightsView: View {
     
     private var headerView: some View {
         HStack {
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.title2.weight(.bold))
+                    .foregroundStyle(.primary)
+                    .padding(.trailing, 8)
+            }
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text("Insights")
                     .font(.largeTitle.weight(.bold))

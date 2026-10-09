@@ -3,6 +3,7 @@ import SwiftData
 
 struct BudgetView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var viewModel: BudgetViewModel
     @StateObject private var notifManager = NotificationManager.shared
     @StateObject private var expenseViewModel = ExpenseViewModel()
@@ -69,6 +70,15 @@ struct BudgetView: View {
     
     private var headerView: some View {
         HStack {
+            Button(action: {
+                dismiss()
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.title2.weight(.bold))
+                    .foregroundStyle(.primary)
+                    .padding(.trailing, 8)
+            }
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text("Budgets")
                     .font(.largeTitle.weight(.bold))
