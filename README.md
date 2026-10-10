@@ -1,58 +1,59 @@
-# Bachat: Personal Finance & Budget Tracker 💸
+# Bachat: Personal Finance & Budget Tracker
 
-**Bachat** (meaning *Savings*) is a robust, SwiftUI-powered personal finance application built to help you track expenses, pace your daily spending, achieve savings goals, and effortlessly settle up shared expenses with roommates or partners.
+Bachat (meaning "Savings") is a robust, SwiftUI-powered personal finance application built to help users track expenses, pace daily spending, achieve savings goals, and effortlessly settle shared expenses with roommates or partners.
 
-It is built with an **offline-first** architecture using **SwiftData**, securely backed by **Firebase Authentication** for true multi-user sandboxing.
+It is built with an offline-first architecture using SwiftData, securely backed by Firebase Authentication for true multi-user sandboxing.
 
 ---
 
-## 🚀 Features 
+## Features
 
 ### 1. Multi-User Sandboxing & Identity
-- **Firebase Auth:** Login via email/password.
-- **Data Isolation:** Every single budget, account balance, expense, and setting is tightly scoped to your logged-in email. If you log out and your roommate logs in on the exact same device, they will see an entirely blank, fresh setup specifically for them.
-- **Cloud Ready:** Future-proofed to sync with Firestore, meaning your data stays with your account.
+- **Firebase Auth:** Login via email and password authentication.
+- **Data Isolation:** Every budget, account balance, expense, and setting is tightly scoped to the authenticated user's email. If the active session is logged out and a different user authenticates on the same device, they will be presented with an entirely isolated and fresh workspace.
+- **Cloud Ready:** Future-proofed to sync with Firestore, ensuring user data persists securely across devices.
 
 ### 2. The "Safe to Spend" Daily Engine
-- **Smooth Pacing Algorithm:** Instead of just giving you a flat monthly limit, Bachat calculates your *Daily Allowance* based on how many days are left in the month and what your remaining limit was *yesterday*.
-- **Strict Daily Tracker:** When you log an expense *today*, it directly subtracts from your daily allowance in real-time. If you under-spend today, the remaining amount is gracefully smoothed over the rest of the month so you don't binge-spend the next day.
+- **Smooth Pacing Algorithm:** Instead of providing a static monthly limit, Bachat calculates a dynamic Daily Allowance based on the remaining days in the month and the unspent limit from the previous day.
+- **Strict Daily Tracker:** Logging an expense immediately deducts from the daily allowance in real-time. Underspending gracefully distributes the surplus across the remainder of the month, preventing binge-spending habits.
 
 ### 3. Expense Tracking & Shared Splits ("Settle Up")
-- **Quick Logging:** Rapidly log expenses by category (Food, Transport, Rent, etc.).
-- **Roommate Splitting:** When logging an expense, you can toggle "Share Expense". 
-- **Automated Settle Up:** The dashboard automatically calculates who paid for what. If you spent ₹500 on Food and shared it, the dashboard tracks that your partner owes you ₹250. If they log an expense and share it, it offsets the balance dynamically, showing you exactly who owes who (Net Balance).
+- **Quick Logging:** Rapidly categorize and log expenses (e.g., Food, Transport, Rent).
+- **Expense Splitting:** When logging an expense, users can toggle "Share Expense" to split costs with a partner.
+- **Automated Settlement:** The dashboard automatically calculates liabilities and credits. For example, if a user spends ₹500 on shared food, the dashboard tracks that their partner owes ₹250. Mutual shared expenses offset dynamically to display a precise Net Balance.
+- **Invoice Generation & Email Settlement:** Users can generate itemized PDF invoices for the month's shared expenses and email them directly to their partner with a single tap.
 
 ### 4. Dynamic Budgets & Income
-- **Flexible Rules:** Set your monthly budget using a strict Fixed Limit (e.g. ₹15,000) or a Percentage of your income (e.g. Spend 60%, Save 40%).
-- **Salary Tracking:** Log your monthly salary and track the exact date it was credited. The app keeps a historical record of all your past salaries.
-- **Account Floor Protection:** Link your bank accounts (like HDFC) and set a minimum balance (e.g. ₹10,000). The dashboard immediately alerts you if your spending pushes you below your safety floor.
+- **Flexible Rules:** Configure monthly budgets using a strict Fixed Limit (e.g., ₹15,000) or a Percentage of income (e.g., Spend 60%, Save 40%).
+- **Salary Tracking:** Log monthly income and track exact credit dates. The application maintains a comprehensive historical ledger of past salaries.
+- **Account Floor Protection:** Link bank accounts and establish minimum balance thresholds (e.g., ₹10,000). The dashboard proactively alerts users if spending pushes balances below the safety floor.
 
 ### 5. Target Savings Goals
-- **Goal Tracking:** Set a specific custom target (e.g. ₹3,00,000) and a target date. 
-- **Progress Snapshot:** Bachat calculates exactly how much you need to save *per month* to hit your goal on time, utilizing your surplus bank balances automatically.
+- **Goal Tracking:** Define specific financial targets (e.g., ₹3,00,000) alongside target completion dates.
+- **Progress Snapshot:** Bachat calculates the exact required monthly savings rate to achieve the goal on schedule, factoring in surplus bank balances automatically.
 
 ### 6. Interactive Dashboard & Theming
-- **Command Center:** The Dashboard contains interactive widgets for your Budget, Insights, Goals, and Recent Transactions.
-- **Dynamic Theming:** A beautiful glassmorphic UI that seamlessly switches between Dark Mode and Light Mode via a dedicated toggle in the app's settings menu.
+- **Command Center:** The primary Dashboard features interactive widgets for Budgets, Insights, Goals, and Recent Transactions.
+- **Dynamic Theming:** A modern, glassmorphic user interface that seamlessly transitions between Dark Mode and Light Mode via a dedicated toggle in the application settings.
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## Tech Stack & Architecture
 
 - **UI Framework:** SwiftUI (iOS 17+)
 - **Local Database:** SwiftData (Offline-first, reactive `@Query` updates)
 - **Backend & Auth:** Firebase (FirebaseAuth, FirebaseFirestore)
-- **Design Pattern:** MVVM (Model-View-ViewModel) + Pure Swift Engines (`BudgetEngine`, `GoalEngine`)
+- **Design Pattern:** MVVM (Model-View-ViewModel) paired with pure Swift utility engines (e.g., `BudgetEngine`, `GoalEngine`)
 
 ### Project Structure
-- **/Models:** SwiftData schemas (`Expense`, `BudgetConfig`, `AccountBalance`, etc.) all containing `ownerEmail` for strict data scoping.
-- **/Views:** SwiftUI views grouped by feature (`Dashboard`, `Expense`, `Income`, `Budget`).
-- **/ViewModels:** Handling the reactive state and bridging the gap between SwiftData and the UI.
-- **/Services:** Pure algorithmic logic like `BudgetEngine.swift` (handles the complex math for daily pacing and alerts) and `AuthManager.swift` (Firebase connection).
+- **/Models:** SwiftData schemas (`Expense`, `BudgetConfig`, `AccountBalance`, etc.), uniformly containing `ownerEmail` properties for strict data scoping.
+- **/Views:** SwiftUI views categorically grouped by feature (`Dashboard`, `Expense`, `Income`, `Budget`).
+- **/ViewModels:** State managers that bridge the gap between SwiftData models and the reactive UI.
+- **/Services:** Algorithmic business logic, such as `BudgetEngine.swift` for daily pacing mathematics, and `FirestoreService.swift` for backend connectivity.
 
 ---
 
-## ⚙️ Installation & Setup (For Personal Use)
+## Installation & Setup
 
 1. **Clone the Repository:**
    ```bash
@@ -61,26 +62,26 @@ It is built with an **offline-first** architecture using **SwiftData**, securely
    ```
 
 2. **Open in Xcode:**
-   Double click the `Bachat.xcodeproj` file to open it in Xcode.
+   Open the `Bachat.xcodeproj` file in Xcode.
 
 3. **Firebase Setup:**
-   *Note: The app requires a valid `GoogleService-Info.plist`.* 
-   - Go to the [Firebase Console](https://console.firebase.google.com/)
-   - Create a project (or use the existing one).
+   *Note: The application requires a valid `GoogleService-Info.plist` file to compile and authenticate.* 
+   - Navigate to the [Firebase Console](https://console.firebase.google.com/)
+   - Create a project or utilize an existing one.
    - Enable **Authentication (Email/Password)**.
-   - Download the `GoogleService-Info.plist` and drag it into the root of the Xcode project.
+   - Download the `GoogleService-Info.plist` and place it in the root directory of the Xcode project.
 
 4. **Build & Run:**
-   - Select your target simulator (e.g., iPhone 15 Pro) or your plugged-in physical device.
-   - Hit `Cmd + R` to build and run.
+   - Select the target simulator (e.g., iPhone 15 Pro) or a connected physical device.
+   - Press `Cmd + R` to build and execute.
 
 ---
 
-## 💡 Pro-Tips for Daily Use
+## Usage Guidelines
 
-1. **Keep it Accurate:** Log your expenses immediately at the point of sale so your *Safe to Spend Today* widget stays perfectly accurate.
-2. **Name your Partner:** Head to the Settings page and enter your roommate's/partner's Display Name. The dashboard will instantly update all "Settle Up" cards to use their real name.
-3. **Change Passwords Easily:** Use the "More" tab to send a secure Firebase password reset directly to your inbox.
+1. **Maintain Accuracy:** Log expenses immediately at the point of sale to ensure the *Safe to Spend Today* metric remains perfectly calibrated.
+2. **Configure Partner Details:** Navigate to the Settings view to enter the display name and email of your partner. The dashboard and PDF invoice generator will automatically adopt these credentials for accurate settlements.
+3. **Settle Up Monthly:** Use the "Mark as Settled" action to securely clear settled shared expenses from the ledger once a payment is finalized.
 
 ---
 *Built with precision for flawless personal finance management.*
