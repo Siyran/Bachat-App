@@ -1,6 +1,7 @@
 import Foundation
 import FirebaseFirestore
 
+/// Core financial transaction entity representing an individual or shared expense.
 struct Expense: Identifiable, Codable {
     var id: String
 
