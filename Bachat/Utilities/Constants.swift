@@ -1,5 +1,6 @@
 import Foundation
 
+/// Application-wide default configuration parameters and threshold values.
 enum Constants {
     // MARK: - Income Defaults
     static let defaultExpectedSalary: Double = 40_000
