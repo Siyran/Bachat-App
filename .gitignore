@@ -35,6 +35,16 @@ Carthage/Build/
 
 ## Accidental OS files
 .DS_Store
+.AppleDouble
+.LSOverride
 *.swp
 *~.nib
 *.log
+.Spotlight-V100
+.Trashes
+
+## Test coverage and archive outputs
+*.xcresult
+*.hmap
+*.ipa
+*.dSYM.zip
