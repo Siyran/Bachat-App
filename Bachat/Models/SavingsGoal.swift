@@ -1,10 +1,13 @@
 import Foundation
 import SwiftData
 
+/// Persistent model representing a targeted savings objective with deadline and progress tracking.
 @Model
 final class SavingsGoal {
+    /// Unique identifier for the savings goal.
     var id: UUID = UUID()
     
+    /// User identifier owning this savings goal.
     var ownerEmail: String = ""
 
     /// Human-readable name, e.g. "Sister's Wedding"
