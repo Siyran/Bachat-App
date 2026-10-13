@@ -1,0 +1,22 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Swift source files
+*.swift text eol=lf diff=swift
+
+# Documentation and text files
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.plist text eol=lf
+
+# Xcode project files
+*.pbxproj -text merge=union
+*.xcworkspacedata text eol=lf
+*.xcuserstate binary
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
