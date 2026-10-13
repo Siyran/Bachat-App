@@ -1,5 +1,6 @@
 import Foundation
 
+/// Utility namespace providing localized Indian currency formatting (Lakhs and Crores).
 enum CurrencyFormatter {
 
     /// Format a Double as INR with Indian grouping: ₹1,00,000
