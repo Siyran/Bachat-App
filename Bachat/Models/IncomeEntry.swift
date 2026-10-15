@@ -1,8 +1,10 @@
 import Foundation
 import SwiftData
 
+/// Persistent model representing a supplemental income line item such as bonuses or side gigs.
 @Model
 final class IncomeEntry {
+    /// Unique identifier for the income entry.
     var id: UUID = UUID()
 
     /// Amount of this income line item
