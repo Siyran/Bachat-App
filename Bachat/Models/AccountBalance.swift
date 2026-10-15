@@ -1,10 +1,13 @@
 import Foundation
 import SwiftData
 
+/// Persistent entity representing a financial bank account balance with minimum floor tracking.
 @Model
 final class AccountBalance {
+    /// Unique identifier for the account balance record.
     var id: UUID = UUID()
     
+    /// User identifier owning this account.
     var ownerEmail: String = ""
 
     /// Account name, e.g. "HDFC", "ICICI"
