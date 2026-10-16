@@ -1,13 +1,16 @@
 import Foundation
 import SwiftData
 
+/// Persistent model tracking a user's monthly income including base salary, bonuses, and side earnings.
 @Model
 final class MonthlyIncome {
+    /// Unique identifier for the monthly income record.
     var id: UUID = UUID()
 
     /// Canonical month identifier, e.g. "2026-10"
     var monthKey: String = ""
     
+    /// User identifier owning this monthly income entry.
     var ownerEmail: String = ""
 
     /// Base salary credited this month
