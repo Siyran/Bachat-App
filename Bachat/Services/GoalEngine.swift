@@ -1,6 +1,6 @@
 import Foundation
 
-/// Pure functions for savings-goal projections and smoke-free tracking.
+/// Pure mathematical functions for savings goal projections, timeline forecasting, and smoke-free savings milestones.
 enum GoalEngine {
 
     // MARK: - Months Remaining
