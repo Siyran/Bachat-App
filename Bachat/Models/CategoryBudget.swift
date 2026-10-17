@@ -1,8 +1,10 @@
 import Foundation
 import SwiftData
 
+/// Persistent model allocating a proportional fractional share of the monthly spending budget to a specific expense category.
 @Model
 final class CategoryBudget {
+    /// Unique identifier for the category budget allocation.
     var id: UUID = UUID()
 
     /// Stored as ExpenseCategory.rawValue
