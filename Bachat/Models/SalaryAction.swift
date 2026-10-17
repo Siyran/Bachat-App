@@ -1,8 +1,10 @@
 import Foundation
 import SwiftData
 
+/// Persistent model tracking actionable monthly financial transfers and bank account top-up tasks.
 @Model
 final class SalaryAction {
+    /// Unique identifier for the salary action item.
     var id: UUID = UUID()
 
     /// Month this action belongs to, e.g. "2026-10"
