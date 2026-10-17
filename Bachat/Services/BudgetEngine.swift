@@ -1,7 +1,7 @@
 import Foundation
 
-/// Pure functions for budget calculations.
-/// Takes simple values (not SwiftData models) so everything is testable without a model container.
+/// Pure mathematical functions for budget calculations, daily allowances, and category threshold alerts.
+/// Operates on primitive types rather than database models to ensure zero-dependency testability.
 enum BudgetEngine {
 
     // MARK: - Spending Limit
