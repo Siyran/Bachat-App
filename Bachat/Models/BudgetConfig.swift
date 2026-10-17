@@ -1,10 +1,13 @@
 import Foundation
 import SwiftData
 
+/// Persistent configuration model defining active savings rules, spending limits, and category allocations.
 @Model
 final class BudgetConfig {
+    /// Unique identifier for the budget configuration profile.
     var id: UUID = UUID()
     
+    /// User identifier owning this budget configuration.
     var ownerEmail: String = ""
 
     /// Which savings rule is active
