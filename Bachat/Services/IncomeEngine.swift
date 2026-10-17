@@ -1,6 +1,6 @@
 import Foundation
 
-/// Pure functions for income calculations.
+/// Pure mathematical functions for income calculations, provisional fallbacks, and salary transfers.
 enum IncomeEngine {
 
     // MARK: - Totals
