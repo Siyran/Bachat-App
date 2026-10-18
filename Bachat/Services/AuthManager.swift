@@ -3,10 +3,12 @@ import FirebaseAuth
 import FirebaseFirestore
 import Combine
 
+/// Manager handling Firebase user authentication, state changes, and session restoration.
 @MainActor
 class AuthManager: ObservableObject {
     static let shared = AuthManager()
     
+    /// The currently authenticated Firebase user, or nil if unauthenticated.
     @Published var currentUser: User?
     
     private init() {
