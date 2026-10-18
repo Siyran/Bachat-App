@@ -2,12 +2,14 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+/// Errors encountered during Firestore remote database operations.
 enum FirestoreError: Error {
     case notAuthenticated
     case decodingError
     case unknown
 }
 
+/// Service managing remote Firebase Firestore synchronization for private and shared transactions.
 class FirestoreService {
     static let shared = FirestoreService()
     private let db = Firestore.firestore()
