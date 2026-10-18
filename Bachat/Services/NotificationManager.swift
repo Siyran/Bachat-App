@@ -1,10 +1,12 @@
 import Foundation
 import UserNotifications
 
+/// Manager coordinating user notification permissions, status queries, and budget limit alerts.
 @MainActor
 final class NotificationManager: ObservableObject {
     static let shared = NotificationManager()
     
+    /// Indicates whether the user has authorized local notifications.
     @Published var hasPermission = false
     
     private init() {
