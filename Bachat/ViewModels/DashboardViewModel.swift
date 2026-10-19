@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import FirebaseAuth
 
+/// View model aggregating financial metrics, monthly budgets, and savings analytics for the dashboard.
 @MainActor
 final class DashboardViewModel: ObservableObject {
     private var modelContext: ModelContext
