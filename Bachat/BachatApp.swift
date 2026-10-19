@@ -4,6 +4,7 @@ import FirebaseCore
 import FirebaseAuth
 import UserNotifications
 
+/// Main application entry point initializing Firebase Core, local notifications, and SwiftData schemas.
 @main
 struct BachatApp: App {
     let container: ModelContainer
