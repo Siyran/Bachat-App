@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 
+/// View model managing budget configuration persistence and category allocation percentages.
 @MainActor
 final class BudgetViewModel: ObservableObject {
     private var modelContext: ModelContext
