@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import FirebaseAuth
 
+/// View model handling savings goal retrieval, initial creation, and user assignment.
 @MainActor
 final class GoalViewModel: ObservableObject {
     private var modelContext: ModelContext
