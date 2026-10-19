@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import FirebaseAuth
 
+/// View model managing monthly income initialization, expected salary state, and provisional records.
 @MainActor
 final class IncomeViewModel: ObservableObject {
     @Published var expectedSalary: Double
