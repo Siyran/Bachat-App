@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import FirebaseAuth
 
+/// Root tab navigation container coordinating main view destinations and authentication state.
 struct ContentView: View {
     @State private var selectedTab: Int = 0
     @State private var showingPasswordAlert = false
