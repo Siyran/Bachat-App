@@ -4,6 +4,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import UserNotifications
 
+/// View model managing real-time Firestore expense listeners and transaction collection state.
 @MainActor
 final class ExpenseViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
