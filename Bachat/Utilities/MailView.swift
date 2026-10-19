@@ -1,6 +1,7 @@
 import SwiftUI
 import MessageUI
 
+/// SwiftUI UIViewControllerRepresentable bridge presenting standard system MFMailComposeViewController with optional attachments.
 struct MailView: UIViewControllerRepresentable {
     @Binding var isShowing: Bool
     @Binding var resultError: Error?
