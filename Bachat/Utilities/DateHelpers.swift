@@ -1,5 +1,6 @@
 import Foundation
 
+/// Utility methods for calendar computations, canonical month keys, and settlement document rendering.
 enum DateHelpers {
     private static let calendar = Calendar.current
 
