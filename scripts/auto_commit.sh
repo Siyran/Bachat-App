@@ -11,7 +11,7 @@ cd "$REPO_DIR"
 
 AUTHOR_NAME="Abrar Ahmad"
 AUTHOR_EMAIL="abrar.ahmad@iust.ac.in"
-TARGET_FILE="docs/activity.log"
+TARGET_FILE="docs/ACTIVITY.md"
 
 export GIT_AUTHOR_NAME="$AUTHOR_NAME"
 export GIT_AUTHOR_EMAIL="$AUTHOR_EMAIL"
@@ -32,7 +32,14 @@ echo "==> Target commits today: $COMMIT_COUNT"
 # Ensure target log file exists
 mkdir -p "$(dirname "$TARGET_FILE")"
 if [ ! -f "$TARGET_FILE" ]; then
-    echo "# Bachat Repository Activity Log" > "$TARGET_FILE"
+    cat << 'EOF' > "$TARGET_FILE"
+# Automated Repository Activity Log
+
+This log records routine maintenance checks and automated synchronization entries.
+
+| Timestamp (UTC) | Run ID | Checkpoint | Status |
+|---|---|---|---|
+EOF
 fi
 
 # Rotating commit message templates
@@ -55,7 +62,7 @@ for ((i = 1; i <= COMMIT_COUNT; i++)); do
     MSG_INDEX=$(( RANDOM % ${#MESSAGES[@]} ))
     COMMIT_MSG="${MESSAGES[$MSG_INDEX]}"
 
-    echo "[$TIMESTAMP] run-id=$HASH sequence=$i/$COMMIT_COUNT" >> "$TARGET_FILE"
+    echo "| $TIMESTAMP | \`$HASH\` | Step $i of $COMMIT_COUNT | Verified |" >> "$TARGET_FILE"
     git add "$TARGET_FILE"
     git commit -m "$COMMIT_MSG [$i/$COMMIT_COUNT]" --author="$AUTHOR_NAME <$AUTHOR_EMAIL>"
     echo "  -> Committed ($i/$COMMIT_COUNT): $COMMIT_MSG [$i/$COMMIT_COUNT]"
