@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 
+/// Budget configuration and envelope tracking interface managing spending limits and category allocations.
 struct BudgetView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
