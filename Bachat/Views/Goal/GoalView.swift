@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 
+/// Savings goal tracker visualising target deadlines, required monthly pacing, and account floor balances.
 struct GoalView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
