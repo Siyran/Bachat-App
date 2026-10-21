@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 import FirebaseAuth
 
+/// Fast transaction entry interface supporting category selection, split ratio adjustments, and instant Firestore sync.
 struct QuickExpenseView: View {
     @StateObject private var viewModel = ExpenseViewModel()
     @Query private var settings: [UserSettings]
