@@ -1,0 +1,40 @@
+name: Automated Contribution Generator
+
+on:
+  schedule:
+    # Runs daily at 05:30 UTC (~11:00 AM IST)
+    - cron: '30 5 * * *'
+  workflow_dispatch:
+    inputs:
+      commits_count:
+        description: 'Number of commits to create (leave blank for random 2-19)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  commit:
+    name: Generate Activity Commits
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Git Credentials
+        run: |
+          git config --global user.name "Abrar Ahmad"
+          git config --global user.email "abrar.ahmad@iust.ac.in"
+
+      - name: Execute Auto Commit Script
+        run: |
+          chmod +x ./scripts/auto_commit.sh
+          if [ -n "${{ github.event.inputs.commits_count }}" ]; then
+            ./scripts/auto_commit.sh "${{ github.event.inputs.commits_count }}"
+          else
+            ./scripts/auto_commit.sh
+          fi
