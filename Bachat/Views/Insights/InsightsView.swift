@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 
+/// Financial insights dashboard presenting monthly breakdown graphs, spend anomalies, and health milestones.
 struct InsightsView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
