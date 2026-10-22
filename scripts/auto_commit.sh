@@ -6,6 +6,8 @@ set -e
 # Author: Abrar Ahmad <abrar.ahmad@iust.ac.in>
 # ==============================================================================
 
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_DIR"
 
@@ -53,7 +55,8 @@ MESSAGES=(
     "chore(sync): update repository sync checkpoint"
 )
 
-# Pull latest changes to avoid conflicts
+# Pull latest changes to avoid conflicts and ensure on main branch
+git checkout -B main origin/main 2>/dev/null || git checkout main 2>/dev/null || true
 git pull --rebase origin main || true
 
 for ((i = 1; i <= COMMIT_COUNT; i++)); do
@@ -70,5 +73,5 @@ for ((i = 1; i <= COMMIT_COUNT; i++)); do
 done
 
 echo "==> Pushing $COMMIT_COUNT commits to origin main..."
-git push origin main
+git push origin HEAD:main
 echo "==> Successfully completed and pushed $COMMIT_COUNT commits!"
