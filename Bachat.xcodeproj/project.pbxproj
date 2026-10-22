@@ -357,6 +357,19 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					A9E73DCDF8CEFEAC18A025EC = {
+						CreatedOnToolsVersion = 15.4;
+						DevelopmentTeam = YVTP543W39;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CC58F6CF9CDD87DB686B75CC;
+					};
+					CC58F6CF9CDD87DB686B75CC = {
+						CreatedOnToolsVersion = 15.4;
+						DevelopmentTeam = YVTP543W39;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = A049FC81BCDE2ED6706F0AE3 /* Build configuration list for PBXProject "Bachat" */;
 			developmentRegion = en;
@@ -468,6 +481,7 @@
 				CODE_SIGNING_REQUIRED = YES;
 				CODE_SIGN_ENTITLEMENTS = Bachat/Bachat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YVTP543W39;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
@@ -553,6 +567,7 @@
 				CODE_SIGNING_REQUIRED = YES;
 				CODE_SIGN_ENTITLEMENTS = Bachat/Bachat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YVTP543W39;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
