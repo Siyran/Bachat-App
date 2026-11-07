@@ -28,7 +28,9 @@ struct DashboardView: View {
     @State private var showMailErrorAlert = false
     @State private var mailError: Error?
     
-    private let monthKey = DateHelpers.monthKey()
+    /// The month key driving the entire dashboard. Determined in loadData()
+    /// based on the user's auto-reset preference.
+    @State private var monthKey: String = DateHelpers.monthKey()
     
     init(context: ModelContext) {
         _viewModel = StateObject(wrappedValue: DashboardViewModel(context: context))
@@ -681,6 +683,33 @@ struct DashboardView: View {
         let currentUserEmail = Auth.auth().currentUser?.email?.lowercased() ?? ""
         let userSettings = settings.first(where: { $0.ownerEmail == currentUserEmail })
         let salary = userSettings?.expectedMonthlySalary ?? Constants.defaultExpectedSalary
+        
+        // ── Resolve which month to display ──────────────────────────
+        // If auto-reset is ON  → always use the current calendar month.
+        // If auto-reset is OFF → keep using the stored activeMonthKey
+        //   so data persists across month boundaries until the user
+        //   manually resets from Settings.
+        if let s = userSettings {
+            if s.autoResetEnabled {
+                // Auto-advance: update the stored key & use it
+                let calendarKey = DateHelpers.monthKey()
+                if s.activeMonthKey != calendarKey {
+                    s.activeMonthKey = calendarKey
+                    try? modelContext.save()
+                }
+                monthKey = calendarKey
+            } else {
+                // Manual mode: if activeMonthKey was never set, seed it
+                if s.activeMonthKey.isEmpty {
+                    s.activeMonthKey = DateHelpers.monthKey()
+                    try? modelContext.save()
+                }
+                monthKey = s.activeMonthKey
+            }
+        } else {
+            monthKey = DateHelpers.monthKey()
+        }
+        
         monthlyIncome = viewModel.fetchOrCreateIncome(monthKey: monthKey, expectedSalary: salary)
         accounts = viewModel.fetchOrCreateAccounts()
         goal = viewModel.fetchGoal()

@@ -30,6 +30,10 @@ struct SettingsView: View {
     @FocusState private var isInputActive: Bool
     @State private var saved = false
     @State private var showingClearAlert = false
+    @State private var showingResetAlert = false
+    
+    // Auto-reset control
+    @State private var autoResetEnabled: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -220,29 +224,86 @@ struct SettingsView: View {
     
     private var actionsSection: some View {
         glassSection(title: "Actions") {
-            Button(action: {
-                let currentMonthKey = DateHelpers.monthKey()
-                Task {
-                    try? await FirestoreService.shared.clearSharedExpenses(monthKey: currentMonthKey)
-                    await MainActor.run {
-                        showingClearAlert = true
+            VStack(spacing: 16) {
+                // ── Auto-reset toggle ──────────────────────────────────
+                Toggle(isOn: $autoResetEnabled) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Automatic Monthly Reset")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.primary)
+                        Text("When off, the dashboard and analytics will keep showing the current month's data until you reset manually.")
+                            .font(.caption2)
+                            .foregroundStyle(.primary.opacity(0.6))
                     }
                 }
-            }) {
-                Text("Clear Settled Shared Expenses (This Month)")
-                    .font(.subheadline.weight(.semibold))
+                .tint(.cyan)
+                
+                Divider().background(Color.primary.opacity(0.1))
+                
+                // ── Manual Start New Month ─────────────────────────────
+                Button(action: {
+                    showingResetAlert = true
+                }) {
+                    HStack {
+                        Image(systemName: "arrow.counterclockwise.circle.fill")
+                            .font(.title3)
+                        Text("Start New Month")
+                            .font(.subheadline.weight(.semibold))
+                    }
                     .frame(maxWidth: .infinity)
                     .padding()
-            }
-            .background(Color.green.opacity(0.2))
-            .foregroundStyle(.green)
-            .cornerRadius(12)
-            .alert("Expenses Cleared", isPresented: $showingClearAlert) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text("All shared expenses for this month have been successfully cleared.")
+                }
+                .background(Color.orange.opacity(0.2))
+                .foregroundStyle(.orange)
+                .cornerRadius(12)
+                .alert("Start New Month?", isPresented: $showingResetAlert) {
+                    Button("Reset", role: .destructive) {
+                        performMonthReset()
+                    }
+                    Button("Cancel", role: .cancel) { }
+                } message: {
+                    Text("This will advance the dashboard and analytics to the current calendar month. Previous month data is preserved in Firestore — you can still view it from the Expenses tab.")
+                }
+                
+                Divider().background(Color.primary.opacity(0.1))
+                
+                // ── Clear settled shared expenses ──────────────────────
+                Button(action: {
+                    let currentMonthKey = DateHelpers.monthKey()
+                    Task {
+                        try? await FirestoreService.shared.clearSharedExpenses(monthKey: currentMonthKey)
+                        await MainActor.run {
+                            showingClearAlert = true
+                        }
+                    }
+                }) {
+                    Text("Clear Settled Shared Expenses (This Month)")
+                        .font(.subheadline.weight(.semibold))
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                }
+                .background(Color.green.opacity(0.2))
+                .foregroundStyle(.green)
+                .cornerRadius(12)
+                .alert("Expenses Cleared", isPresented: $showingClearAlert) {
+                    Button("OK", role: .cancel) { }
+                } message: {
+                    Text("All shared expenses for this month have been successfully cleared.")
+                }
             }
         }
+    }
+    
+    /// Advances the active month key to the current calendar month.
+    private func performMonthReset() {
+        let s = settings.first(where: { $0.ownerEmail == currentUserEmail }) ?? {
+            let newSettings = UserSettings()
+            newSettings.ownerEmail = currentUserEmail
+            modelContext.insert(newSettings)
+            return newSettings
+        }()
+        s.activeMonthKey = DateHelpers.monthKey()
+        try? modelContext.save()
     }
     
     private var saveButton: some View {
@@ -308,6 +369,7 @@ struct SettingsView: View {
         partnerEmail = s.partnerEmail
         expectedSalary = String(format: "%.0f", s.expectedMonthlySalary)
         splitRatio = String(format: "%.0f", s.defaultSplitRatio * 100)
+        autoResetEnabled = s.autoResetEnabled
         
         let c = configs.first(where: { $0.ownerEmail == currentUserEmail }) ?? {
             let newConfig = BudgetConfig()
@@ -352,6 +414,7 @@ struct SettingsView: View {
         
         s.expectedMonthlySalary = Double(expectedSalary) ?? Constants.defaultExpectedSalary
         s.defaultSplitRatio = (Double(splitRatio) ?? 50) / 100.0
+        s.autoResetEnabled = autoResetEnabled
         
         // BudgetConfig
         let c = configs.first(where: { $0.ownerEmail == currentUserEmail }) ?? {

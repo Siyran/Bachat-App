@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import FirebaseAuth
 
 /// Financial insights dashboard presenting monthly breakdown graphs, spend anomalies, and health milestones.
 struct InsightsView: View {
@@ -8,8 +9,10 @@ struct InsightsView: View {
     @StateObject private var expenseViewModel = ExpenseViewModel()
     @Query private var allIncomes: [MonthlyIncome]
     @Query private var configs: [BudgetConfig]
+    @Query private var settings: [UserSettings]
     
-    private let currentKey = DateHelpers.monthKey()
+    /// Resolved in onAppear based on the user's auto-reset preference.
+    @State private var currentKey: String = DateHelpers.monthKey()
     
     var body: some View {
         NavigationStack {
@@ -44,6 +47,15 @@ struct InsightsView: View {
             .navigationBarHidden(true)
             
             .onAppear {
+                // Resolve which month to show based on auto-reset preference
+                let email = Auth.auth().currentUser?.email?.lowercased() ?? ""
+                if let userSettings = settings.first(where: { $0.ownerEmail == email }) {
+                    if userSettings.autoResetEnabled {
+                        currentKey = DateHelpers.monthKey()
+                    } else if !userSettings.activeMonthKey.isEmpty {
+                        currentKey = userSettings.activeMonthKey
+                    }
+                }
                 expenseViewModel.startListening(monthKey: currentKey)
             }
         }
